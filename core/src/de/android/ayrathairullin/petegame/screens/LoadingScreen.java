@@ -1,4 +1,4 @@
-package de.android.ayrathairullin.petegame;
+package de.android.ayrathairullin.petegame.screens;
 
 
 import com.badlogic.gdx.Gdx;
@@ -10,6 +10,8 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+
+import de.android.ayrathairullin.petegame.PeteGame;
 
 public class LoadingScreen extends ScreenAdapter {
     private static final float WORLD_WIDTH = 640;

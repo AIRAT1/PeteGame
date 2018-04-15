@@ -1,4 +1,4 @@
-package de.android.ayrathairullin.petegame;
+package de.android.ayrathairullin.petegame.screens;
 
 
 import com.badlogic.gdx.Gdx;
@@ -11,6 +11,9 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+
+import de.android.ayrathairullin.petegame.PeteGame;
+import de.android.ayrathairullin.petegame.objects.Pete;
 
 public class GameScreen extends ScreenAdapter {
     private static final float WORLD_WIDTH = 640;
@@ -25,6 +28,7 @@ public class GameScreen extends ScreenAdapter {
     private OrthogonalTiledMapRenderer orthogonalTiledMapRenderer;
 
     private final PeteGame peteGame;
+    private Pete pete;
 
     public GameScreen(PeteGame peteGame) {
         this.peteGame = peteGame;
@@ -37,6 +41,7 @@ public class GameScreen extends ScreenAdapter {
 
     @Override
     public void show() {
+        pete = new Pete();
         camera = new OrthographicCamera();
         viewport = new FitViewport(WORLD_WIDTH, WORLD_HEIGHT, camera);
         viewport.apply(true);
@@ -57,7 +62,7 @@ public class GameScreen extends ScreenAdapter {
     }
 
     private void update(float delta) {
-
+        pete.update();
     }
 
     private void clearScreen() {
@@ -78,7 +83,7 @@ public class GameScreen extends ScreenAdapter {
         shapeRenderer.setProjectionMatrix(camera.projection);
         shapeRenderer.setTransformMatrix(camera.view);
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
-
+        pete.drawDebug(shapeRenderer);
         shapeRenderer.end();
     }
 }

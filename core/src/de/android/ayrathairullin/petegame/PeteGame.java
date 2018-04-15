@@ -6,6 +6,8 @@ import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 
+import de.android.ayrathairullin.petegame.screens.LoadingScreen;
+
 public class PeteGame extends Game {
 	private final AssetManager assetManager = new AssetManager();
 	
