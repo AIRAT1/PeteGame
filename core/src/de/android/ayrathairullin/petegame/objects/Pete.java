@@ -15,7 +15,7 @@ public class Pete {
     private final Rectangle collisionRectangle = new Rectangle(0, 0, WIDTH, HEIGHT);
     private float x = 0, y = 0, xSpeed = 0, ySpeed = 0;
     private boolean blockJump = false;
-    private float jumpYDistance = 0
+    private float jumpYDistance = 0;
 
     public void update() {
         if (Gdx.input.isKeyPressed(Keys.RIGHT)) {
