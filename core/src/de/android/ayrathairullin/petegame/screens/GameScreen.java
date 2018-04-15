@@ -77,7 +77,6 @@ public class GameScreen extends ScreenAdapter {
         orthogonalTiledMapRenderer.render();
         batch.begin();
 
-
         batch.end();
     }
 
