@@ -63,6 +63,7 @@ public class GameScreen extends ScreenAdapter {
 
     private void update(float delta) {
         pete.update();
+        stopPeteLeavingTheScreen();
     }
 
     private void clearScreen() {
@@ -85,5 +86,17 @@ public class GameScreen extends ScreenAdapter {
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
         pete.drawDebug(shapeRenderer);
         shapeRenderer.end();
+    }
+
+    private void stopPeteLeavingTheScreen() {
+        if (pete.getY() < 0) {
+            pete.setPosition(pete.getX(), 0);
+        }
+        if (pete.getX() < 0) {
+            pete.setPosition(0, pete.getY());
+        }
+        if (pete.getX() + Pete.WIDTH > WORLD_WIDTH) {
+            pete.setPosition(WORLD_WIDTH - Pete.WIDTH, pete.getY());
+        }
     }
 }

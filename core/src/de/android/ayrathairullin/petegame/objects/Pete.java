@@ -9,11 +9,13 @@ import com.badlogic.gdx.math.Rectangle;
 public class Pete {
     private static final float MAX_X_SPEED = 2;
     private static final float MAX_Y_SPEED = 2;
-    private static final int WIDTH = 16;
+    public static final int WIDTH = 16;
     private static final int HEIGHT = 15;
 
     private final Rectangle collisionRectangle = new Rectangle(0, 0, WIDTH, HEIGHT);
     private float x = 0, y = 0, xSpeed = 0, ySpeed = 0;
+    private boolean blockJump = false;
+    private float jumpYDistance = 0
 
     public void update() {
         if (Gdx.input.isKeyPressed(Keys.RIGHT)) {
@@ -35,5 +37,19 @@ public class Pete {
 
     private void updateCollisionRectangle() {
         collisionRectangle.setPosition(x, y);
+    }
+
+    public void setPosition(float x, float y) {
+        this.x = x;
+        this.y = y;
+        updateCollisionRectangle();
+    }
+
+    public float getX() {
+        return x;
+    }
+
+    public float getY() {
+        return y;
     }
 }
