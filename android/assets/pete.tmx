@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" tiledversion="1.1.2" orientation="orthogonal" renderorder="right-down" width="40" height="30" tilewidth="16" tileheight="16" infinite="0" nextobjectid="1">
+ <tileset firstgid="1" name="floor" tilewidth="16" tileheight="16" tilecount="18" columns="6">
+  <image source="floor.png" width="96" height="48"/>
+ </tileset>
+ <tileset firstgid="19" name="acorn" tilewidth="16" tileheight="16" tilecount="1" columns="1">
+  <image source="acorn.png" width="16" height="16"/>
+ </tileset>
  <layer name="Слой тайлов 1" width="40" height="30">
   <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T20ND6AAAAAA4NcAEsAAAQ==
+   eJztkUkOgDAMA8O+FUr7/8fi3FuJCiLl4JHmkJMjW4QQQgghhBBCSI0Ozo7zFhiMfvkj74TZ6JcvedpzDwc4wklsd27N055XuMEdHmK7c2ue9nzBCG+YxHbnN3mljr3cunWpYy93qHTs5datH3QgBjc=
   </data>
  </layer>
 </map>
