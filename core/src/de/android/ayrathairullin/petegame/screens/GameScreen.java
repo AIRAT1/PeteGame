@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -30,6 +31,8 @@ public class GameScreen extends ScreenAdapter {
     private final PeteGame peteGame;
     private Pete pete;
 
+    private Texture peteTexture;
+
     public GameScreen(PeteGame peteGame) {
         this.peteGame = peteGame;
     }
@@ -41,7 +44,8 @@ public class GameScreen extends ScreenAdapter {
 
     @Override
     public void show() {
-        pete = new Pete();
+        peteTexture = peteGame.getAssetManager().get("pete.png");
+        pete = new Pete(peteTexture);
         camera = new OrthographicCamera();
         viewport = new FitViewport(WORLD_WIDTH, WORLD_HEIGHT, camera);
         viewport.apply(true);
@@ -62,7 +66,7 @@ public class GameScreen extends ScreenAdapter {
     }
 
     private void update(float delta) {
-        pete.update();
+        pete.update(delta);
         stopPeteLeavingTheScreen();
     }
 
@@ -76,7 +80,7 @@ public class GameScreen extends ScreenAdapter {
         batch.setTransformMatrix(camera.view);
         orthogonalTiledMapRenderer.render();
         batch.begin();
-
+        pete.draw(batch);
         batch.end();
     }
 
@@ -91,6 +95,7 @@ public class GameScreen extends ScreenAdapter {
     private void stopPeteLeavingTheScreen() {
         if (pete.getY() < 0) {
             pete.setPosition(pete.getX(), 0);
+            pete.landed();
         }
         if (pete.getX() < 0) {
             pete.setPosition(0, pete.getY());
