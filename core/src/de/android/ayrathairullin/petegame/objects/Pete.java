@@ -104,4 +104,8 @@ public class Pete {
         }
         batch.draw(toDraw, x, y);
     }
+
+    public Rectangle getCollisionRectangle() {
+        return collisionRectangle;
+    }
 }
