@@ -22,4 +22,8 @@ public class Acorn {
     public void draw(SpriteBatch batch) {
         batch.draw(texture, x, y);
     }
+
+    public Rectangle getCollisionRectangle() {
+        return collision;
+    }
 }

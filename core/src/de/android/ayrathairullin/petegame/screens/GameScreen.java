@@ -84,6 +84,7 @@ public class GameScreen extends ScreenAdapter {
         pete.update(delta);
         stopPeteLeavingTheScreen();
         handlePeteCollision();
+        handlePeteCollisionWithAcorn();
     }
 
     private void clearScreen() {
@@ -202,6 +203,16 @@ public class GameScreen extends ScreenAdapter {
             acorns.add(new Acorn(peteGame.getAssetManager().get("acorn.png", Texture.class),
                     mapObject.getProperties().get("x", Float.class),
                     mapObject.getProperties().get("y", Float.class)));
+        }
+    }
+
+    private void handlePeteCollisionWithAcorn() {
+        for (Iterator<Acorn> iter = acorns.iterator(); iter.hasNext();) {
+            Acorn acorn = iter.next();
+            if (pete.getCollisionRectangle().
+                    overlaps(acorn.getCollisionRectangle())) {
+                iter.remove();
+            }
         }
     }
 
