@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.2" orientation="orthogonal" renderorder="right-down" width="40" height="30" tilewidth="16" tileheight="16" infinite="0" nextobjectid="1">
+<map version="1.0" tiledversion="1.1.2" orientation="orthogonal" renderorder="right-down" width="40" height="30" tilewidth="16" tileheight="16" infinite="0" nextobjectid="8">
  <tileset firstgid="1" name="floor" tilewidth="16" tileheight="16" tilecount="18" columns="6">
   <image source="floor.png" width="96" height="48"/>
  </tileset>
@@ -11,4 +11,10 @@
    eJztkUkOgDAMA8O+FUr7/8fi3FuJCiLl4JHmkJMjW4QQQgghhBBCSI0Ozo7zFhiMfvkj74TZ6JcvedpzDwc4wklsd27N055XuMEdHmK7c2ue9nzBCG+YxHbnN3mljr3cunWpYy93qHTs5datH3QgBjc=
   </data>
  </layer>
+ <objectgroup name="Collectables">
+  <object id="4" gid="19" x="272" y="430.667" width="16" height="16"/>
+  <object id="5" gid="19" x="305.333" y="415.333" width="16" height="16"/>
+  <object id="6" gid="19" x="336" y="431.333" width="16" height="16"/>
+  <object id="7" gid="19" x="368.667" y="416" width="16" height="16"/>
+ </objectgroup>
 </map>

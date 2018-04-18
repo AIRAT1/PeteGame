@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.maps.MapLayer;
+import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
@@ -21,6 +23,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import java.util.Iterator;
 
 import de.android.ayrathairullin.petegame.PeteGame;
+import de.android.ayrathairullin.petegame.objects.Acorn;
 import de.android.ayrathairullin.petegame.objects.Pete;
 
 public class GameScreen extends ScreenAdapter {
@@ -40,6 +43,7 @@ public class GameScreen extends ScreenAdapter {
     private Pete pete;
 
     private Texture peteTexture;
+    private Array<Acorn> acorns = new Array<Acorn>();
 
     public GameScreen(PeteGame peteGame) {
         this.peteGame = peteGame;
@@ -64,6 +68,8 @@ public class GameScreen extends ScreenAdapter {
         tiledMap = peteGame.getAssetManager().get("pete.tmx");
         orthogonalTiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap, batch);
         orthogonalTiledMapRenderer.setView(camera);
+
+        populateAcorns();
     }
 
     @Override
@@ -90,6 +96,9 @@ public class GameScreen extends ScreenAdapter {
         batch.setTransformMatrix(camera.view);
         orthogonalTiledMapRenderer.render();
         batch.begin();
+        for (Acorn acorn : acorns) {
+            acorn.draw(batch);
+        }
         pete.draw(batch);
         batch.end();
     }
@@ -184,6 +193,15 @@ public class GameScreen extends ScreenAdapter {
                     pete.setPosition(intersection.getX() - Pete.WIDTH, pete.getY());
                 }
             }
+        }
+    }
+
+    private void populateAcorns() {
+        MapLayer mapLayer = tiledMap.getLayers().get("Collectables");
+        for (MapObject mapObject : mapLayer.getObjects()) {
+            acorns.add(new Acorn(peteGame.getAssetManager().get("acorn.png", Texture.class),
+                    mapObject.getProperties().get("x", Float.class),
+                    mapObject.getProperties().get("y", Float.class)));
         }
     }
 

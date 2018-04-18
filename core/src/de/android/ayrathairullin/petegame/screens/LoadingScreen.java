@@ -41,6 +41,7 @@ public class LoadingScreen extends ScreenAdapter {
     public void show() {
         peteGame.getAssetManager().load("pete.tmx", TiledMap.class);
         peteGame.getAssetManager().load("pete.png", Texture.class);
+        peteGame.getAssetManager().load("acorn.png", Texture.class);
 
         camera = new OrthographicCamera();
         camera.position.set(WORLD_WIDTH / 2, WORLD_HEIGHT / 2, 0);
