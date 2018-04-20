@@ -3,6 +3,8 @@ package de.android.ayrathairullin.petegame.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -42,7 +44,6 @@ public class GameScreen extends ScreenAdapter {
     private final PeteGame peteGame;
     private Pete pete;
 
-    private Texture peteTexture;
     private Array<Acorn> acorns = new Array<Acorn>();
 
     public GameScreen(PeteGame peteGame) {
@@ -56,8 +57,8 @@ public class GameScreen extends ScreenAdapter {
 
     @Override
     public void show() {
-        peteTexture = peteGame.getAssetManager().get("pete.png");
-        pete = new Pete(peteTexture);
+
+        pete = new Pete(peteGame.getAssetManager().get("pete.png", Texture.class), peteGame.getAssetManager().get("jump.wav", Sound.class));
         pete.setPosition(0, WORLD_HEIGHT / 2);
         camera = new OrthographicCamera();
         viewport = new FitViewport(WORLD_WIDTH, WORLD_HEIGHT, camera);
@@ -70,6 +71,8 @@ public class GameScreen extends ScreenAdapter {
         orthogonalTiledMapRenderer.setView(camera);
 
         populateAcorns();
+
+        peteGame.getAssetManager().get("peteTheme.mp3", Music.class).play();
     }
 
     @Override
@@ -214,6 +217,7 @@ public class GameScreen extends ScreenAdapter {
             Acorn acorn = iter.next();
             if (pete.getCollisionRectangle().
                     overlaps(acorn.getCollisionRectangle())) {
+                peteGame.getAssetManager().get("acorn.wav", Sound.class).play();
                 iter.remove();
             }
         }

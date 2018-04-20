@@ -3,6 +3,7 @@ package de.android.ayrathairullin.petegame.objects;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Animation.PlayMode;
@@ -27,7 +28,10 @@ public class Pete {
     private final Animation walking;
     private final TextureRegion standing, jumpUp, jumpDown;
 
-    public Pete(Texture texture) {
+    private final Sound jumpSound;
+
+    public Pete(Texture texture, Sound jumpSound) {
+        this.jumpSound = jumpSound;
         TextureRegion[] regions = TextureRegion.split(texture, WIDTH, HEIGHT)[0];
         walking = new Animation(.25f, regions[0], regions[1]);
         walking.setPlayMode(PlayMode.LOOP);
@@ -46,6 +50,7 @@ public class Pete {
             xSpeed = 0;
         }
         if (Gdx.input.isKeyPressed(Keys.UP) && !blockJump) {
+            if (ySpeed != MAX_Y_SPEED) jumpSound.play();
             ySpeed = MAX_Y_SPEED;
             jumpYDistance += ySpeed;
             blockJump = jumpYDistance > MAX_JUMP_DISTANCE;

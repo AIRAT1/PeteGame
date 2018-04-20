@@ -3,6 +3,8 @@ package de.android.ayrathairullin.petegame.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -42,6 +44,9 @@ public class LoadingScreen extends ScreenAdapter {
         peteGame.getAssetManager().load("pete.tmx", TiledMap.class);
         peteGame.getAssetManager().load("pete.png", Texture.class);
         peteGame.getAssetManager().load("acorn.png", Texture.class);
+        peteGame.getAssetManager().load("jump.wav", Sound.class);
+        peteGame.getAssetManager().load("acorn.wav", Sound.class);
+        peteGame.getAssetManager().load("peteTheme.mp3", Music.class);
 
         camera = new OrthographicCamera();
         camera.position.set(WORLD_WIDTH / 2, WORLD_HEIGHT / 2, 0);
